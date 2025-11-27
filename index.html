@@ -32,9 +32,10 @@ h1 {
 
 .calendar {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* mindig 7 oszlop */
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 10px;
 }
+
 
 .day {
   background-color: #fff4ee;
