@@ -9,35 +9,50 @@ body {
   margin: 0;
   background-color: #f8ebe7;
   display: flex;
-  flex-direction: column; /* <<< EZ a kulcs! */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   font-family: Arial, sans-serif;
 }
 
+h1 {
+  text-align:center;
+  color:#5a3a28;
+  margin-bottom:20px;
+}
+
+#countdown {
+  text-align:center;
+  font-size:20px;
+  color:#7b4c33;
+  margin-top:-10px;
+  margin-bottom:30px;
+}
+
 .calendar {
-
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr); /* mindig 7 oszlop */
   gap: 10px;
-
 }
 
 .day {
-background-color: #fff4ee;
-border: 2px solid #a56c4f;
-border-radius: 10px;
-padding: 15px;
-font-weight: bold;
-cursor: pointer;
-transition: transform 0.2s, background 0.2s;
+  background-color: #fff4ee;
+  border: 2px solid #a56c4f;
+  border-radius: 10px;
+  padding: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s, background 0.2s;
 }
 .day:hover {
-background-color: #ffe3d3;
-transform: scale(1.05);
+  background-color: #ffe3d3;
+  transform: scale(1.05);
 }
-#always .day, #bonus .day {
+
+/* Állandó feladatok */
+#always .day {
   border: 1px solid #c0a080;
   border-radius: 8px;
   padding: 10px;
@@ -45,21 +60,14 @@ transform: scale(1.05);
   cursor: pointer;
 }
 
-@media(max-width: 900px) {
-  .calendar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .day {
-    flex: 1 1 calc(33.33% - 10px); /* tablet */
-  }
-}
-
+/* Mobilon is maradjon 7 oszlop, így 3 sor lesz 21 naphoz */
 @media(max-width: 600px) {
+  .calendar {
+    grid-template-columns: repeat(7, 1fr); /* fix 7 oszlop */
+  }
   .day {
-    flex: 1 1 calc(50% - 10px); /* mobil 2 elem sorban */
+    padding: 10px;
+    font-size: 14px;
   }
 }
 </style>
