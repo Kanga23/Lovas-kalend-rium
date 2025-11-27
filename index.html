@@ -1,64 +1,91 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BFC Lovas Adventi Kalendárium</title>
 <style>
 body {
   margin: 0;
   background-color: #f8ebe7;
-  display: flex;
-  flex-direction: column; /* <<< EZ a kulcs! */
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   font-family: Arial, sans-serif;
+  padding: 20px;
+  text-align: center;
 }
 
+h1 {
+  color: #5a3a28;
+  margin-bottom: 20px;
+}
+
+#countdown {
+  font-size: 20px;
+  color: #7b4c33;
+  margin-bottom: 30px;
+}
+
+/* Rugalmas grid */
 .calendar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .day {
-background-color: #fff4ee;
-border: 2px solid #a56c4f;
-border-radius: 10px;
-padding: 15px;
-font-weight: bold;
-cursor: pointer;
-transition: transform 0.2s, background 0.2s;
+  background-color: #fff4ee;
+  border: 2px solid #a56c4f;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s, background 0.2s;
 }
+
 .day:hover {
-background-color: #ffe3d3;
-transform: scale(1.05);
+  background-color: #ffe3d3;
+  transform: scale(1.05);
 }
-#always .day, #bonus .day {
+
+#always {
+  margin-top: 30px;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#always .day {
   border: 1px solid #c0a080;
   border-radius: 8px;
-  padding: 10px;
-  margin: 5px;
+  padding: 8px;
+  margin: 5px 0;
   cursor: pointer;
 }
+
+/* Mobilon kisebb napok */
+@media(max-width: 500px) {
+  .day {
+    padding: 8px;
+    font-size: 14px;
+  }
 }
 </style>
 </head>
 <body>
-<h1 style="text-align:center; color:#5a3a28; margin-bottom:20px;">BFC Lovas Adventi Kalendárium</h1>
-<p id="countdown" style="text-align:center; font-size:20px; color:#7b4c33; margin-top:-10px; margin-bottom:30px;"></p>
+
+<h1>BFC Lovas Adventi Kalendárium</h1>
+<p id="countdown"></p>
 
 <div class="calendar" id="calendar"></div>
 <div id="always"></div>
 
-
 <script>
 const actions = {
-1: { type: 'link', value: 'https://wordwall.net/play/65720/971/272', message: 'Töltsd ki a játékot és szerezz pontokat!' },
-2: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLSdaQ_F700tBSfHdwHyN6W86J4iY3QNj24v3BAfspyvXVAYgIw/viewform',message: 'Töltsd ki a kvízt és szerezz pontokat!'  },
-3: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScqH6OG9QcDvdWtApM6BM-USHV5sxvKCiLXKf-anwP9843HHw/viewform?usp=sharing&ouid=113235921918408098482',message: 'Csinálj ma lépcsőzős gyakorlatot 8 percig! Ha kész vagy küldj a csoportba egy ( 🦵 vagy 💪 )  emojit (vagy privátba ha nem vagy benne a csopiba) Ha látom az emojit, akkor jár a pont (2), de ne csalj! A becsületedre van bízva :D Utána töltsd ki a tesztet! ' },
+  1: { type: 'link', value: 'https://wordwall.net/play/65720/971/272', message: 'Töltsd ki a játékot és szerezz pontokat!' },
+  2: { type: 'link', value: 'https://docs.google.com/forms/', message: 'Töltsd ki a kvízt!' },
+  3: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScqH6OG9QcDvdWtApM6BM-USHV5sxvKCiLXKf-anwP9843HHw/viewform?usp=sharing&ouid=113235921918408098482',message: 'Csinálj ma lépcsőzős gyakorlatot 8 percig! Ha kész vagy küldj a csoportba egy ( 🦵 vagy 💪 )  emojit (vagy privátba ha nem vagy benne a csopiba) Ha látom az emojit, akkor jár a pont (2), de ne csalj! A becsületedre van bízva :D Utána töltsd ki a tesztet! ' },
 4: { type: 'link', value: 'https://wordwall.net/play/65729/526/368',message: 'Töltsd ki a kvízt és szerezz pontokat!' },
 5: { type: 'link', value: 'https://www.youtube.com/watch?v=fvXMJwfOAUg',message: 'Nézd meg ezt a filmet és válaszolj erre a kérdésre: Milyen fajtájú lónak nevezi az edző a lovat, amikor versenyre akar nevezni a lány? Privátba várom a választ és utána jár a pont!' },
 6: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScZZY3BgquAr7ga2JMBy_ai83XsMv11PonqIVabt7pZafTrCQ/viewform?usp=sharing&ouid=113235921918408098482', message:'Töltsd ki a kvízt és szerezz pontokat!' },
@@ -76,71 +103,54 @@ const actions = {
 18: { type: 'link', value: 'https://wordwall.net/play/102594/210/344', message:'Töltsd ki a kvízt és szerezz pontokat! ' },
 19: { type: 'text', message:'Rajzolj egy 15 cm átmérőjű körbe egy lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a legelőre! :D A pont akkor jár, ha már kikerült a legelőre! ' },
 20: { type: 'link', value: 'https://wordwall.net/play/99730/790/528', message:'https://www.lovasok.hu/lotenyesztes/lofajtak/lofajtak/ Olvass utána különböző fajtájú lovaknak és jegyezd meg az ismertető jegyeit, majd töltsd ki a kvízt és szerezz pontokat! ' },
-21: { type: 'link', value: 'https://www.educaplay.com/', message:'Készíts számunkra egy kvízt jó nehéz kérdésekkel. Ha fel tudsz tenni olyan kérdést (ami szakmai) amire nem tudunk válaszolni, plusz pont! (szándékosan rossz válaszok nem érnek.) Ehhez bármilyen online keresztrejtvény készítő alkalmazást használhatsz, de itt van egy ötlet:' },
-
-
+  21: { type: 'link', value: 'https://www.educaplay.com/', message: 'Készíts számunkra egy kvízt!' }
 };
+
 const alwaysAvailable = [
-  { title: "Állandó feladat 1", content: "Vigyél almát vagy répát a lovaknak! 3pont/alkalom" },
-  { title: "Állandó feladat 2", content: "Készíts nekünk karácsonyi díszeket! 1pont/dísz" },
-  { title: "Állandó feladat 3", content: "Pucold le a miniket! 2pont/alkalom" }
+  { title: "Állandó feladat 1", content: "Vigyél almát vagy répát a lovaknak! 3 pont/alkalom" },
+  { title: "Állandó feladat 2", content: "Készíts karácsonyi díszeket! 1 pont/dísz" },
+  { title: "Állandó feladat 3", content: "Pucold le a miniket! 2 pont/alkalom" }
 ];
 
 const calendar = document.getElementById('calendar');
 
-
 for (let i = 1; i <= 21; i++) {
-const dayDiv = document.createElement('div');
-dayDiv.className = 'day';
-dayDiv.textContent = `dec. ${i}.`;
-dayDiv.dataset.day = i;
-calendar.appendChild(dayDiv);
+  const dayDiv = document.createElement('div');
+  dayDiv.className = 'day';
+  dayDiv.textContent = `dec. ${i}.`;
+  dayDiv.dataset.day = i;
+  calendar.appendChild(dayDiv);
 }
-
 
 const today = new Date();
-const currentDay = today.getMonth() === 11 ? today.getDate() : 1; // December hónap (11 = 0-index)
-
+const currentDay = today.getMonth() === 11 ? today.getDate() : 1;
 
 document.querySelectorAll('.day').forEach(btn => {
-const day = parseInt(btn.dataset.day);
-btn.addEventListener('click', () => {
-if (day <= currentDay) {
-const action = actions[day];
-if (!action) return alert('🎁 Még nincs beállítva tartalom ehhez a naphoz.');
-
-
-if (action.type === 'link') {
-  const msg = action.message ? action.message + ' Kattints az OK-ra a megnyitáshoz!' : 'Kattints az OK-ra a megnyitáshoz!';
-  alert(msg);
-  window.open(action.value, '_blank');
-} else if (action.type === 'text') {
-  alert(action.value);
-}
-} else {
-alert('Ez a nap még zárva van! 🎁 Nézz vissza később!');
-}
-});
+  const day = parseInt(btn.dataset.day);
+  btn.addEventListener('click', () => {
+    if (day <= currentDay) {
+      const action = actions[day];
+      if (!action) return alert('🎁 Még nincs tartalom ehhez a naphoz.');
+      if (action.type === 'link') {
+        alert(action.message || 'Kattints az OK-ra!');
+        window.open(action.value, '_blank');
+      } else if (action.type === 'text') {
+        alert(action.value);
+      }
+    } else {
+      alert('Ez a nap még zárva van! 🎁 Nézz vissza később!');
+    }
+  });
 });
 
 const countdownElement = document.getElementById("countdown");
-const todayDate = new Date();
-const christmas = new Date(todayDate.getFullYear(), 11, 24); // December 24.
-const diffTime = christmas - todayDate;
-const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-if (diffDays > 0) {
-  countdownElement.textContent = `🎄 Még ${diffDays} nap van karácsonyig! 🎁`;
-} else if (diffDays === 0) {
-  countdownElement.textContent = `🎅 Boldog karácsonyt! 🎄`;
-} else {
-  countdownElement.textContent = `🌟 Remélem, csodás volt az ünnep!`;
-}
+const christmas = new Date(today.getFullYear(), 11, 24);
+const diffDays = Math.ceil((christmas - today) / (1000 * 60 * 60 * 24));
+countdownElement.textContent = diffDays > 0 ? `🎄 Még ${diffDays} nap van karácsonyig! 🎁` : (diffDays === 0 ? `🎅 Boldog karácsonyt! 🎄` : `🌟 Remélem, csodás volt az ünnep!`);
 
 function renderAlwaysAvailable() {
   const box = document.getElementById("always");
   box.innerHTML = "<h2>Állandó feladatok</h2>";
-
   alwaysAvailable.forEach(task => {
     const div = document.createElement("div");
     div.className = "day";
