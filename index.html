@@ -69,7 +69,7 @@ margin: 30px 0px;
 }
 .point a{
   color: #ee472e;
-  
+
 }
 .point:hover a {
   color: #291910;
@@ -90,37 +90,89 @@ margin: 30px 0px;
 <p id="countdown"></p>
 
 <div class="calendar" id="calendar"></div>
-<p class="point"><a href="https://docs.google.com/spreadsheets/d/1Ll7H5s02XTG-rcqwY82ILUwYAcg6RDfgVunM45D_AiE/edit?usp=sharing">Ponttáblázat</a></p>
+<p class="point"><a
+href="https://docs.google.com/spreadsheets/d/1Ll7H5s02XTG-rcqwY82ILUwYAcg6RDfgVunM45D_AiE/edit?usp=sharing">Ponttáblázat</a></p>
 <div id="always"></div>
 
 <script>
 const actions = {
-  1: { type: 'link', value: 'https://wordwall.net/play/65720/971/272', message: 'Töltsd ki a játékot és szerezz pontokat!' },
-  2: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLSdaQ_F700tBSfHdwHyN6W86J4iY3QNj24v3BAfspyvXVAYgIw/viewform', message: 'Töltsd ki a játékot és szerezz pontokat!'' },
-  3: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScqH6OG9QcDvdWtApM6BM-USHV5sxvKCiLXKf-anwP9843HHw/viewform?usp=sharing&ouid=113235921918408098482',message: 'Csinálj ma lépcsőzős gyakorlatot 8 percig! Ha kész vagy küldj a csoportba egy ( 🦵 vagy 💪 )  emojit (vagy privátba ha nem vagy benne a csopiba) Ha látom az emojit, akkor jár a pont (2), de ne csalj! A becsületedre van bízva :D Utána töltsd ki a tesztet! ' },
-4: { type: 'link', value: 'https://wordwall.net/play/65729/526/368',message: 'Töltsd ki a kvízt és szerezz pontokat!' },
-5: { type: 'link', value: 'https://www.youtube.com/watch?v=fvXMJwfOAUg',message: 'Nézd meg ezt a filmet és válaszolj erre a kérdésre: Milyen fajtájú lónak nevezi az edző a lovat, amikor versenyre akar nevezni a lány? Privátba várom a választ és utána jár a pont!' },
-6: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScZZY3BgquAr7ga2JMBy_ai83XsMv11PonqIVabt7pZafTrCQ/viewform?usp=sharing&ouid=113235921918408098482', message:'Töltsd ki a kvízt és szerezz pontokat!' },
-7: { type: 'link', value: 'https://snafflez.com/horsemaker/', message:'Alkosd meg a saját lovad és küldj róla egy képet!' },
-8: { type: 'link', value: 'https://wordwall.net/play/65722/367/476', message:'Töltsd ki a kvízt és szerezz pontokat!' },
-9: { type: 'text', message:'Ideje kreatívkodni! Nézz körül lovas webáruházakban pl.: horze, decatlon stb.. és válazd ki a szetted! (a lóét is ;)) Fotózd le a kosarad tartalmát, és megkapod érte a pontot.' },
-10: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836351-word_search_horse_breeds.html', message:'Töltsd ki a játékot és szerezz pontokat!  ' },
-11: { type: 'link', value: 'https://youtu.be/GqCZCgRdzZo?list=PL3CDewDG2GCvevmpCg_iPpExbbW_8cXhn', message:'Mielőtt túl sok bejglit ennél, mozogj kicsit és erősíts! Várom az emojikat! :D ( 🦵 vagy 💪 )' },
-12: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScDfgHpBJ5HRUBVjSDCjqBmSQmmcMgns7RyDDyOfL9HwOo5Og/viewform?usp=dialog', message:'Töltsd ki a játékot és szerezz pontokat! Először olvasd el a cikket! ' },
-13: { type: 'link', value: 'https://drive.google.com/drive/folders/1CI-CPxqxSA-XRYV_d4VNGwwHhUzjEUjo?usp=sharing', message:'Készítsd gyümölcsből vagy zöldségből lófigurát/szobrot. Lehet 2D-s vagy 3D amit csak szeretnél. Legyél kreatív! Igyekezz olyan alapanyagokból csinálni amit megehet a ló! Ha kész vagy hozd el nekünk és jár a pont!' },
-14: { type: 'link', value: 'https://videa.hu/videok/film-animacio/a-paripa-secretariat-2010-122-perc-amerika-5eVS9LI31LYIJj86', message:'Nézd meg ezt a filmet és ha válaszolsz a kérdésre, jár a pont! Hányadik helyezést ért el az első és a második versenyén?' },
-15: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26857272-talald_ki_melyik_tartozek_melyik_nyereghez_kothet.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
-16: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836660-bfc_toto.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
-17: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836531-lo_testreszek.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
-18: { type: 'link', value: 'https://wordwall.net/play/102594/210/344', message:'Töltsd ki a kvízt és szerezz pontokat! ' },
-19: { type: 'text', message:'Rajzolj egy 15 cm átmérőjű körbe egy lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a legelőre! :D A pont akkor jár, ha már kikerült a legelőre! ' },
-20: { type: 'link', value: 'https://wordwall.net/play/99730/790/528', message:'https://www.lovasok.hu/lotenyesztes/lofajtak/lofajtak/ Olvass utána különböző fajtájú lovaknak és jegyezd meg az ismertető jegyeit, majd töltsd ki a kvízt és szerezz pontokat! ' },
-  21: { type: 'link', value: 'https://www.educaplay.com/', message: 'Készíts számunkra egy kvízt!' }
+  1: { type: 'link', value: 'https://wordwall.net/play/65720/971/272',
+message: 'Töltsd ki a játékot és szerezz pontokat!' },
+  2: { type: 'link', value: 'https://docs.google.com/forms/', message:
+'Töltsd ki a kvízt!' },
+  3: { type: 'link', value:
+'https://docs.google.com/forms/d/e/1FAIpQLScqH6OG9QcDvdWtApM6BM-USHV5sxvKCiLXKf-anwP9843HHw/viewform?usp=sharing&ouid=113235921918408098482',message:
+'Csinálj ma lépcsőzős gyakorlatot 8 percig! Ha kész vagy küldj a
+csoportba egy ( 🦵 vagy 💪 )  emojit (vagy privátba ha nem vagy benne
+a csopiba) Ha látom az emojit, akkor jár a pont (2), de ne csalj! A
+becsületedre van bízva :D Utána töltsd ki a tesztet! ' },
+4: { type: 'link', value:
+'https://wordwall.net/play/65729/526/368',message: 'Töltsd ki a kvízt
+és szerezz pontokat!' },
+5: { type: 'link', value:
+'https://www.youtube.com/watch?v=fvXMJwfOAUg',message: 'Nézd meg ezt a
+filmet és válaszolj erre a kérdésre: Milyen fajtájú lónak nevezi az
+edző a lovat, amikor versenyre akar nevezni a lány? Privátba várom a
+választ és utána jár a pont!' },
+6: { type: 'link', value:
+'https://docs.google.com/forms/d/e/1FAIpQLScZZY3BgquAr7ga2JMBy_ai83XsMv11PonqIVabt7pZafTrCQ/viewform?usp=sharing&ouid=113235921918408098482',
+message:'Töltsd ki a kvízt és szerezz pontokat!' },
+7: { type: 'link', value: 'https://snafflez.com/horsemaker/',
+message:'Alkosd meg a saját lovad és küldj róla egy képet!' },
+8: { type: 'link', value: 'https://wordwall.net/play/65722/367/476',
+message:'Töltsd ki a kvízt és szerezz pontokat!' },
+9: { type: 'text', message:'Ideje kreatívkodni! Nézz körül lovas
+webáruházakban pl.: horze, decatlon stb.. és válazd ki a szetted! (a
+lóét is ;)) Fotózd le a kosarad tartalmát, és megkapod érte a pontot.'
+},
+10: { type: 'link', value:
+'https://www.educaplay.com/learning-resources/26836351-word_search_horse_breeds.html',
+message:'Töltsd ki a játékot és szerezz pontokat!  ' },
+11: { type: 'link', value:
+'https://youtu.be/GqCZCgRdzZo?list=PL3CDewDG2GCvevmpCg_iPpExbbW_8cXhn',
+message:'Mielőtt túl sok bejglit ennél, mozogj kicsit és erősíts!
+Várom az emojikat! :D ( 🦵 vagy 💪 )' },
+12: { type: 'link', value:
+'https://docs.google.com/forms/d/e/1FAIpQLScDfgHpBJ5HRUBVjSDCjqBmSQmmcMgns7RyDDyOfL9HwOo5Og/viewform?usp=dialog',
+message:'Töltsd ki a játékot és szerezz pontokat! Először olvasd el a
+cikket! ' },
+13: { type: 'link', value:
+'https://drive.google.com/drive/folders/1CI-CPxqxSA-XRYV_d4VNGwwHhUzjEUjo?usp=sharing',
+message:'Készítsd gyümölcsből vagy zöldségből lófigurát/szobrot. Lehet
+2D-s vagy 3D amit csak szeretnél. Legyél kreatív! Igyekezz olyan
+alapanyagokból csinálni amit megehet a ló! Ha kész vagy hozd el nekünk
+és jár a pont!' },
+14: { type: 'link', value:
+'https://videa.hu/videok/film-animacio/a-paripa-secretariat-2010-122-perc-amerika-5eVS9LI31LYIJj86',
+message:'Nézd meg ezt a filmet és ha válaszolsz a kérdésre, jár a
+pont! Hányadik helyezést ért el az első és a második versenyén?' },
+15: { type: 'link', value:
+'https://www.educaplay.com/learning-resources/26857272-talald_ki_melyik_tartozek_melyik_nyereghez_kothet.html',
+message:'Töltsd ki a játékot és szerezz pontokat!' },
+16: { type: 'link', value:
+'https://www.educaplay.com/learning-resources/26836660-bfc_toto.html',
+message:'Töltsd ki a játékot és szerezz pontokat!' },
+17: { type: 'link', value:
+'https://www.educaplay.com/learning-resources/26836531-lo_testreszek.html',
+message:'Töltsd ki a játékot és szerezz pontokat!' },
+18: { type: 'link', value: 'https://wordwall.net/play/102594/210/344',
+message:'Töltsd ki a kvízt és szerezz pontokat! ' },
+19: { type: 'text', message:'Rajzolj egy 15 cm átmérőjű körbe egy
+lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a
+legelőre! :D A pont akkor jár, ha már kikerült a legelőre! ' },
+20: { type: 'link', value: 'https://wordwall.net/play/99730/790/528',
+message:'https://www.lovasok.hu/lotenyesztes/lofajtak/lofajtak/ Olvass
+utána különböző fajtájú lovaknak és jegyezd meg az ismertető jegyeit,
+majd töltsd ki a kvízt és szerezz pontokat! ' },
+  21: { type: 'link', value: 'https://www.educaplay.com/', message:
+'Készíts számunkra egy kvízt!' }
 };
 
 const alwaysAvailable = [
-  { title: "Állandó feladat 1", content: "Vigyél almát vagy répát a lovaknak! 3 pont/alkalom" },
-  { title: "Állandó feladat 2", content: "Készíts karácsonyi díszeket! 1 pont/dísz" },
+  { title: "Állandó feladat 1", content: "Vigyél almát vagy répát a
+lovaknak! 3 pont/alkalom" },
+  { title: "Állandó feladat 2", content: "Készíts karácsonyi díszeket!
+1 pont/dísz" },
   { title: "Állandó feladat 3", content: "Pucold le a miniket! 2 pont/alkalom" }
 ];
 
@@ -135,7 +187,7 @@ for (let i = 1; i <= 21; i++) {
 }
 
 const today = new Date();
-const currentDay = today.getMonth() === 11 ? today.getDate() : 21;
+const currentDay = today.getMonth() === 11 ? today.getDate() : 1;
 
 document.querySelectorAll('.day').forEach(btn => {
   const day = parseInt(btn.dataset.day);
@@ -158,7 +210,9 @@ document.querySelectorAll('.day').forEach(btn => {
 const countdownElement = document.getElementById("countdown");
 const christmas = new Date(today.getFullYear(), 11, 24);
 const diffDays = Math.ceil((christmas - today) / (1000 * 60 * 60 * 24));
-countdownElement.textContent = diffDays > 0 ? `🎄 Még ${diffDays} nap van karácsonyig! 🎁` : (diffDays === 0 ? `🎅 Boldog karácsonyt! 🎄` : `🌟 Remélem, csodás volt az ünnep!`);
+countdownElement.textContent = diffDays > 0 ? `🎄 Még ${diffDays} nap
+van karácsonyig! 🎁` : (diffDays === 0 ? `🎅 Boldog karácsonyt! 🎄` :
+`🌟 Remélem, csodás volt az ünnep!`);
 
 function renderAlwaysAvailable() {
   const box = document.getElementById("always");
