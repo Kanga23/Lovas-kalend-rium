@@ -8,201 +8,220 @@
 body {
   margin: 0;
   background-color: #f8ebe7;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
   text-align: center;
+  color: #5a3a28;
 }
 
 h1 {
-  color: #5a3a28;
-  margin-bottom: 20px;
+  color: #8b4513;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 #countdown {
-  font-size: 20px;
-  color: #7b4c33;
+  font-size: 18px;
+  color: #a0522d;
   margin-bottom: 30px;
+  font-weight: bold;
 }
 
 /* Rugalmas grid */
 .calendar {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: 10px;
-    max-width: 500px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .day {
-  background-color: #fff4ee;
-  border: 2px solid #a56c4f;
-  border-radius: 10px;
-  padding: 10px;
+  background-color: #fff;
+  border: 2px solid #cd853f;
+  border-radius: 12px;
+  padding: 15px 5px;
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .day:hover {
-  background-color: #ffe3d3;
-  transform: scale(1.05);
+  background-color: #ffe4c4;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.day.closed {
+    background-color: #e0e0e0;
+    border-color: #999;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.day.closed:hover {
+    transform: none;
+    background-color: #e0e0e0;
 }
 
 #always {
-  margin-top: 30px;
-  max-width: 200px;
+  margin-top: 40px;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
 
+#always h2 {
+    font-size: 1.2em;
+    border-bottom: 2px solid #cd853f;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
 #always .day {
   border: 1px solid #c0a080;
+  background-color: #fffaf0;
   border-radius: 8px;
-  padding: 8px;
-  margin: 5px 0;
+  padding: 12px;
+  margin: 10px 0;
   cursor: pointer;
 }
 
-.point{
-margin: 30px 0px;
+.point {
+  margin: 30px 0px;
+  font-size: 1.1em;
 }
-.point a{
-  color: #ee472e;
 
+.point a {
+  color: #ffffff;
+  background-color: #ee472e;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background 0.3s;
 }
-.point:hover a {
-  color: #291910;
+
+.point a:hover {
+  background-color: #c0392b;
 }
 
 /* Mobilon kisebb napok */
 @media(max-width: 500px) {
   .day {
-    padding: 8px;
+    padding: 10px 5px;
     font-size: 14px;
+  }
+  .calendar {
+      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
   }
 }
 </style>
 </head>
 <body>
 
-<h1>BFC Lovas Adventi Kalendárium</h1>
+<h1>🎄 BFC Lovas Adventi Kalendárium 🐎</h1>
 <p id="countdown"></p>
 
 <div class="calendar" id="calendar"></div>
-<p class="point"><a
-href="https://docs.google.com/spreadsheets/d/1Ll7H5s02XTG-rcqwY82ILUwYAcg6RDfgVunM45D_AiE/edit?usp=sharing">Ponttáblázat</a></p>
+
+<p class="point">
+    <a href="https://docs.google.com/spreadsheets/d/1Ll7H5s02XTG-rcqwY82ILUwYAcg6RDfgVunM45D_AiE/edit?usp=sharing" target="_blank">📊 Ponttáblázat megtekintése</a>
+</p>
+
 <div id="always"></div>
 
 <script>
 const actions = {
-  1: { type: 'link', value: 'https://wordwall.net/play/65720/971/272',
-message: 'Töltsd ki a játékot és szerezz pontokat!' },
-  2: { type: 'link', value: 'https://docs.google.com/forms/', message:
-'Töltsd ki a kvízt!' },
-  3: { type: 'link', value:
-'https://docs.google.com/forms/d/e/1FAIpQLScqH6OG9QcDvdWtApM6BM-USHV5sxvKCiLXKf-anwP9843HHw/viewform?usp=sharing&ouid=113235921918408098482',message:
-'Csinálj ma lépcsőzős gyakorlatot 8 percig! Ha kész vagy küldj a
-csoportba egy ( 🦵 vagy 💪 )  emojit (vagy privátba ha nem vagy benne
-a csopiba) Ha látom az emojit, akkor jár a pont (2), de ne csalj! A
-becsületedre van bízva :D Utána töltsd ki a tesztet! ' },
-4: { type: 'link', value:
-'https://wordwall.net/play/65729/526/368',message: 'Töltsd ki a kvízt
-és szerezz pontokat!' },
-5: { type: 'link', value:
-'https://www.youtube.com/watch?v=fvXMJwfOAUg',message: 'Nézd meg ezt a
-filmet és válaszolj erre a kérdésre: Milyen fajtájú lónak nevezi az
-edző a lovat, amikor versenyre akar nevezni a lány? Privátba várom a
-választ és utána jár a pont!' },
-6: { type: 'link', value:
-'https://docs.google.com/forms/d/e/1FAIpQLScZZY3BgquAr7ga2JMBy_ai83XsMv11PonqIVabt7pZafTrCQ/viewform?usp=sharing&ouid=113235921918408098482',
-message:'Töltsd ki a kvízt és szerezz pontokat!' },
-7: { type: 'link', value: 'https://snafflez.com/horsemaker/',
-message:'Alkosd meg a saját lovad és küldj róla egy képet!' },
-8: { type: 'link', value: 'https://wordwall.net/play/65722/367/476',
-message:'Töltsd ki a kvízt és szerezz pontokat!' },
-9: { type: 'text', message:'Ideje kreatívkodni! Nézz körül lovas
-webáruházakban pl.: horze, decatlon stb.. és válazd ki a szetted! (a
-lóét is ;)) Fotózd le a kosarad tartalmát, és megkapod érte a pontot.'
-},
-10: { type: 'link', value:
-'https://www.educaplay.com/learning-resources/26836351-word_search_horse_breeds.html',
-message:'Töltsd ki a játékot és szerezz pontokat!  ' },
-11: { type: 'link', value:
-'https://youtu.be/GqCZCgRdzZo?list=PL3CDewDG2GCvevmpCg_iPpExbbW_8cXhn',
-message:'Mielőtt túl sok bejglit ennél, mozogj kicsit és erősíts!
-Várom az emojikat! :D ( 🦵 vagy 💪 )' },
-12: { type: 'link', value:
-'https://docs.google.com/forms/d/e/1FAIpQLScDfgHpBJ5HRUBVjSDCjqBmSQmmcMgns7RyDDyOfL9HwOo5Og/viewform?usp=dialog',
-message:'Töltsd ki a játékot és szerezz pontokat! Először olvasd el a
-cikket! ' },
-13: { type: 'link', value:
-'https://drive.google.com/drive/folders/1CI-CPxqxSA-XRYV_d4VNGwwHhUzjEUjo?usp=sharing',
-message:'Készítsd gyümölcsből vagy zöldségből lófigurát/szobrot. Lehet
-2D-s vagy 3D amit csak szeretnél. Legyél kreatív! Igyekezz olyan
-alapanyagokból csinálni amit megehet a ló! Ha kész vagy hozd el nekünk
-és jár a pont!' },
-14: { type: 'link', value:
-'https://videa.hu/videok/film-animacio/a-paripa-secretariat-2010-122-perc-amerika-5eVS9LI31LYIJj86',
-message:'Nézd meg ezt a filmet és ha válaszolsz a kérdésre, jár a
-pont! Hányadik helyezést ért el az első és a második versenyén?' },
-15: { type: 'link', value:
-'https://www.educaplay.com/learning-resources/26857272-talald_ki_melyik_tartozek_melyik_nyereghez_kothet.html',
-message:'Töltsd ki a játékot és szerezz pontokat!' },
-16: { type: 'link', value:
-'https://www.educaplay.com/learning-resources/26836660-bfc_toto.html',
-message:'Töltsd ki a játékot és szerezz pontokat!' },
-17: { type: 'link', value:
-'https://www.educaplay.com/learning-resources/26836531-lo_testreszek.html',
-message:'Töltsd ki a játékot és szerezz pontokat!' },
-18: { type: 'link', value: 'https://wordwall.net/play/102594/210/344',
-message:'Töltsd ki a kvízt és szerezz pontokat! ' },
-19: { type: 'text', message:'Rajzolj egy 15 cm átmérőjű körbe egy
-lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a
-legelőre! :D A pont akkor jár, ha már kikerült a legelőre! ' },
-20: { type: 'link', value: 'https://wordwall.net/play/99730/790/528',
-message:'https://www.lovasok.hu/lotenyesztes/lofajtak/lofajtak/ Olvass
-utána különböző fajtájú lovaknak és jegyezd meg az ismertető jegyeit,
-majd töltsd ki a kvízt és szerezz pontokat! ' },
-  21: { type: 'link', value: 'https://www.educaplay.com/', message:
-'Készíts számunkra egy kvízt!' }
+  1: { type: 'link', value: 'https://wordwall.net/play/65720/971/272', message: 'Töltsd ki a játékot és szerezz pontokat!' },
+  2: { type: 'link', value: 'https://docs.google.com/forms/', message: 'Töltsd ki a kvízt!' },
+  3: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScqH6OG9QcDvdWtApM6BM-USHV5sxvKCiLXKf-anwP9843HHw/viewform?usp=sharing&ouid=113235921918408098482', message: 'Csinálj ma lépcsőzős gyakorlatot 8 percig! Ha kész vagy, küldj a csoportba egy ( 🦵 vagy 💪 ) emojit. Ha látom az emojit, akkor jár a pont (2), de ne csalj! A becsületedre van bízva :D Utána töltsd ki a tesztet!' },
+  4: { type: 'link', value: 'https://wordwall.net/play/65729/526/368', message: 'Töltsd ki a kvízt és szerezz pontokat!' },
+  5: { type: 'link', value: 'https://www.youtube.com/watch?v=fvXMJwfOAUg', message: 'Nézd meg ezt a filmet és válaszolj erre a kérdésre: Milyen fajtájú lónak nevezi az edző a lovat, amikor versenyre akar nevezni a lány? Privátba várom a választ és utána jár a pont!' },
+  6: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScZZY3BgquAr7ga2JMBy_ai83XsMv11PonqIVabt7pZafTrCQ/viewform?usp=sharing&ouid=113235921918408098482', message:'Töltsd ki a kvízt és szerezz pontokat!' },
+  7: { type: 'link', value: 'https://snafflez.com/horsemaker/', message:'Alkosd meg a saját lovad és küldj róla egy képet!' },
+  8: { type: 'link', value: 'https://wordwall.net/play/65722/367/476', message:'Töltsd ki a kvízt és szerezz pontokat!' },
+  9: { type: 'text', message:'Ideje kreatívkodni! Nézz körül lovas webáruházakban (pl.: Horze, Decathlon stb..) és válaszd ki a szetted! (a lóét is ;)) Fotózd le a kosarad tartalmát, és megkapod érte a pontot.' },
+  10: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836351-word_search_horse_breeds.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
+  11: { type: 'link', value: 'https://youtu.be/GqCZCgRdzZo?list=PL3CDewDG2GCvevmpCg_iPpExbbW_8cXhn', message:'Mielőtt túl sok bejglit ennél, mozogj kicsit és erősíts! Várom az emojikat! :D ( 🦵 vagy 💪 )' },
+  12: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScDfgHpBJ5HRUBVjSDCjqBmSQmmcMgns7RyDDyOfL9HwOo5Og/viewform?usp=dialog', message:'Töltsd ki a játékot és szerezz pontokat! Először olvasd el a cikket!' },
+  13: { type: 'link', value: 'https://drive.google.com/drive/folders/1CI-CPxqxSA-XRYV_d4VNGwwHhUzjEUjo?usp=sharing', message:'Készítsd gyümölcsből vagy zöldségből lófigurát/szobrot. Lehet 2D-s vagy 3D, amit csak szeretnél. Legyél kreatív! Igyekezz olyan alapanyagokból csinálni, amit megehet a ló! Ha kész vagy, hozd el nekünk és jár a pont!' },
+  14: { type: 'link', value: 'https://videa.hu/videok/film-animacio/a-paripa-secretariat-2010-122-perc-amerika-5eVS9LI31LYIJj86', message:'Nézd meg ezt a filmet és ha válaszolsz a kérdésre, jár a pont! Hányadik helyezést ért el az első és a második versenyén?' },
+  15: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26857272-talald_ki_melyik_tartozek_melyik_nyereghez_kothet.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
+  16: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836660-bfc_toto.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
+  17: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836531-lo_testreszek.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
+  18: { type: 'link', value: 'https://wordwall.net/play/102594/210/344', message:'Töltsd ki a kvízt és szerezz pontokat!' },
+  19: { type: 'text', message:'Rajzolj egy 15 cm átmérőjű körbe egy lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a legelőre! :D A pont akkor jár, ha már kikerült a legelőre!' },
+  20: { type: 'link', value: 'https://wordwall.net/play/99730/790/528', message:'https://www.lovasok.hu/lotenyesztes/lofajtak/lofajtak/ Olvass utána különböző fajtájú lovaknak és jegyezd meg az ismertető jegyeit, majd töltsd ki a kvízt és szerezz pontokat!' },
+  21: { type: 'link', value: 'https://www.educaplay.com/', message: 'Készíts számunkra egy kvízt!' }
 };
 
 const alwaysAvailable = [
-  { title: "Állandó feladat 1", content: "Vigyél almát vagy répát a
-lovaknak! 3 pont/alkalom" },
-  { title: "Állandó feladat 2", content: "Készíts karácsonyi díszeket!
-1 pont/dísz" },
-  { title: "Állandó feladat 3", content: "Pucold le a miniket! 2 pont/alkalom" }
+  { title: "🍏 Állandó feladat 1", content: "Vigyél almát vagy répát a lovaknak! 3 pont/alkalom" },
+  { title: "🎄 Állandó feladat 2", content: "Készíts karácsonyi díszeket! 1 pont/dísz" },
+  { title: "🐎 Állandó feladat 3", content: "Pucold le a miniket! 2 pont/alkalom" }
 ];
 
 const calendar = document.getElementById('calendar');
+const today = new Date();
+
+// Dátum logika meghatározása
+// Ha december van, a mai nap számít.
+// Ha november (vagy korábbi), akkor 0 (még semmi sincs nyitva).
+// Ha január (vagy későbbi), akkor 25 (minden nyitva).
+let currentDay;
+if (today.getMonth() === 11) { // December (0-tól indexel, tehát 11 a december)
+    currentDay = today.getDate();
+} else if (today.getMonth() < 11) {
+    currentDay = 0; // Még nincs december
+} else {
+    currentDay = 25; // Már elmúlt karácsony, minden nyitva
+}
+
+// TESZTELÉSHEZ: Ha ki akarod próbálni, vedd ki a komment jelet (//) a következő sor elől:
+// currentDay = 21; 
 
 for (let i = 1; i <= 21; i++) {
   const dayDiv = document.createElement('div');
   dayDiv.className = 'day';
   dayDiv.textContent = `dec. ${i}.`;
   dayDiv.dataset.day = i;
+
+  // Ha a nap még zárva van, adjunk hozzá vizuális jelzést
+  if (i > currentDay) {
+      dayDiv.classList.add('closed');
+  }
+
   calendar.appendChild(dayDiv);
 }
 
-const today = new Date();
-const currentDay = today.getMonth() === 11 ? today.getDate() : 1;
-
 document.querySelectorAll('.day').forEach(btn => {
   const day = parseInt(btn.dataset.day);
+  
+  // Csak a naptár napjaira vonatkozzon, az állandó feladatokra ne
+  if (!day) return; 
+
   btn.addEventListener('click', () => {
     if (day <= currentDay) {
       const action = actions[day];
+      
       if (!action) return alert('🎁 Még nincs tartalom ehhez a naphoz.');
+
       if (action.type === 'link') {
-        alert(action.message || 'Kattints az OK-ra!');
-        window.open(action.value, '_blank');
+        // Confirm ablak jobb, mint az alert, mert nem blokkolja annyira a böngészőt
+        if(confirm(action.message + '\n\nMegnyitod az oldalt?')) {
+            window.open(action.value, '_blank');
+        }
       } else if (action.type === 'text') {
-        alert(action.value);
+        // JAVÍTVA: Itt message-t kell kiírni, nem value-t, mert a text típusnál nincs value
+        alert(action.message);
       }
     } else {
-      alert('Ez a nap még zárva van! 🎁 Nézz vissza később!');
+      alert(`Ez a nap (${day}.) még zárva van! 🎁 Nézz vissza később!`);
     }
   });
 });
@@ -210,9 +229,7 @@ document.querySelectorAll('.day').forEach(btn => {
 const countdownElement = document.getElementById("countdown");
 const christmas = new Date(today.getFullYear(), 11, 24);
 const diffDays = Math.ceil((christmas - today) / (1000 * 60 * 60 * 24));
-countdownElement.textContent = diffDays > 0 ? `🎄 Még ${diffDays} nap
-van karácsonyig! 🎁` : (diffDays === 0 ? `🎅 Boldog karácsonyt! 🎄` :
-`🌟 Remélem, csodás volt az ünnep!`);
+countdownElement.textContent = diffDays > 0 ? `🎄 Még ${diffDays} nap van karácsonyig! 🎁` : (diffDays === 0 ? `🎅 Boldog karácsonyt! 🎄` : `🌟 Remélem, csodás volt az ünnep!`);
 
 function renderAlwaysAvailable() {
   const box = document.getElementById("always");
