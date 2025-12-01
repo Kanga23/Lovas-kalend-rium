@@ -145,7 +145,7 @@ const actions = {
   6: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScZZY3BgquAr7ga2JMBy_ai83XsMv11PonqIVabt7pZafTrCQ/viewform?usp=sharing&ouid=113235921918408098482', message:'Töltsd ki a kvízt és szerezz pontokat!' },
   7: { type: 'link', value: 'https://snafflez.com/horsemaker/', message:'Alkosd meg a saját lovad és küldj róla egy képet!' },
   8: { type: 'link', value: 'https://wordwall.net/play/65722/367/476', message:'Töltsd ki a kvízt és szerezz pontokat!' },
-  9: { type: 'link', value:  'https://wordwall.net/play/65722/367/476',message:'Ideje kreatívkodni! Nézz körül lovas webáruházakban (pl.: Horze, Decathlon stb..) és válaszd ki a szetted! (a lóét is ;)) Fotózd le a kosarad tartalmát, és megkapod érte a pontot.' },
+  9: { type: 'link', value:  'https://forms.gle/fUTnfQpUNd9s1oUR7',message:'Töltsd ki a tesztet és szerezz pontokat! ÉSSSSSS!!!!!! Itt az ideje kreatívkodni! Nézz körül lovas webáruházakban (pl.: Horze, Decathlon stb..) és válaszd ki a szetted! (a lóét is ;)) Fotózd le a kosarad tartalmát, és megkapod érte a pontot.' },
   10: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836351-word_search_horse_breeds.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
   11: { type: 'link', value: 'https://youtu.be/GqCZCgRdzZo?list=PL3CDewDG2GCvevmpCg_iPpExbbW_8cXhn', message:'Mielőtt túl sok bejglit ennél, mozogj kicsit és erősíts! Várom az emojikat! :D ( 🦵 vagy 💪 )' },
   12: { type: 'link', value: 'https://docs.google.com/forms/d/e/1FAIpQLScDfgHpBJ5HRUBVjSDCjqBmSQmmcMgns7RyDDyOfL9HwOo5Og/viewform?usp=dialog', message:'Töltsd ki a játékot és szerezz pontokat! Először olvasd el a cikket!' },
@@ -155,15 +155,15 @@ const actions = {
   16: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836660-bfc_toto.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
   17: { type: 'link', value: 'https://www.educaplay.com/learning-resources/26836531-lo_testreszek.html', message:'Töltsd ki a játékot és szerezz pontokat!' },
   18: { type: 'link', value: 'https://wordwall.net/play/102594/210/344', message:'Töltsd ki a kvízt és szerezz pontokat!' },
-  19: { type: 'link', value: 'https://www.educaplay.com/',message:'Rajzolj egy 15 cm átmérőjű körbe egy lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a legelőre! :D A pont akkor jár, ha már kikerült a legelőre!' },
+  19: { type: 'link', value: 'https://forms.gle/s6cqDUaQtJr4NijYA',message:'Töltsd ki a tesztet és szerezz pontokat! Majd! Rajzolj egy 15 cm átmérőjű körbe egy lovat, szépen színezd ki és hozd el nekünk, ugyanis kikerül a legelőre! :D A pont akkor jár, ha már kikerült a legelőre!' },
   20: { type: 'link', value: 'https://wordwall.net/play/99730/790/528', message:'https://www.lovasok.hu/lotenyesztes/lofajtak/lofajtak/ Olvass utána különböző fajtájú lovaknak és jegyezd meg az ismertető jegyeit, majd töltsd ki a kvízt és szerezz pontokat!' },
-  21: { type: 'link', value: 'https://www.educaplay.com/', message: 'Készíts számunkra egy kvízt!' }
+  21: { type: 'link', value: 'https://www.educaplay.com/', message: 'Készíts számunkra egy kvízt! Ehhez bármilyen felületet használhatsz, én belinkeltem egyet.' }
 };
 
 const alwaysAvailable = [
-  { title: "🍏 Állandó feladat 1", content: "Vigyél almát vagy répát a lovaknak! 3 pont/alkalom" },
+  { title: "🍏 Állandó feladat 1", content: "Vigyél almát vagy répát a lovaknak! 5 pont/alkalom" },
   { title: "🎄 Állandó feladat 2", content: "Készíts karácsonyi díszeket! 1 pont/dísz" },
-  { title: "🐎 Állandó feladat 3", content: "Pucold le a miniket! 2 pont/alkalom" }
+  { title: "🐎 Állandó feladat 3", content: "Pucold le a miniket! 3 pont/alkalom" }
 ];
 
 const calendar = document.getElementById('calendar');
@@ -183,7 +183,7 @@ if (today.getMonth() === 11) { // December (0-tól indexel, tehát 11 a december
 }
 
 // TESZTELÉSHEZ: Ha ki akarod próbálni, vedd ki a komment jelet (//) a következő sor elől:
-// currentDay = 21; 
+currentDay = 21; 
 
 for (let i = 1; i <= 21; i++) {
   const dayDiv = document.createElement('div');
