@@ -213,7 +213,7 @@ document.querySelectorAll('.day').forEach(btn => {
 
       if (action.type === 'link') {
         // Confirm ablak jobb, mint az alert, mert nem blokkolja annyira a böngészőt
-        if(confirm(action.message + '\n\nMegnyitod az oldalt?')) {
+        if(confirm(action.message + '\n\nA folytatáshoz kattints az OK gombra!')) {
             window.open(action.value, '_blank');
         }
       } else if (action.type === 'text') {
